@@ -19,15 +19,7 @@ def show(food_id):
     yields = CNFYieldAmount.objects.filter(food=food)
     refuses = CNFRefuseAmount.objects.filter(food=food)
     return render_template(
-<<<<<<< HEAD
-<<<<<<< HEAD
         'show2.html',
-=======
-        'layout.html',
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
-=======
-        'layout.html',
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
         food=food,
         conversions=conversions,
         nutrients=nutrients,
