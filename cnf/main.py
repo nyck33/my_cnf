@@ -20,15 +20,8 @@ def setup_app():
     app.config.from_object(cnf.settings)
     with app.app_context():
         app.db = MongoEngine(app)
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         #app.bootstrap = Bootstrap(app)
-=======
-        app.bootstrap = Bootstrap(app)
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
-=======
-        app.bootstrap = Bootstrap(app)
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
         app.manager = Manager(app)
         app.manager.add_command(
             'runserver',
@@ -50,42 +43,21 @@ def main():  # pragma: no cover
         import cnf.views
     #app.run()
     app.manager.run()
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 '''
 if __name__== "__main__":  # pragma: no cover
     app = setup_app()
 
-=======
-
-'''
-if __name__== "__main__":  # pragma: no cover
-    app = setup_app()
-
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
-=======
-
-'''
-if __name__== "__main__":  # pragma: no cover
-    app = setup_app()
-
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
     # Import your views!
     with app.app_context():
         import cnf.views
     #app.run()
     app.manager.run()
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 
 
 python cnf/main.py runserver
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
-=======
 
 
-python cnf/main.py runserver
->>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
 '''
