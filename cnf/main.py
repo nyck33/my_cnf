@@ -2,6 +2,7 @@ import warnings
 from flask import Flask
 from flask_mongoengine import MongoEngine
 from flask_script import Server, Manager
+from flask_bootstrap import Bootstrap
 
 import cnf.settings
 import cnf.scripts
@@ -19,7 +20,7 @@ def setup_app():
     app.config.from_object(cnf.settings)
     with app.app_context():
         app.db = MongoEngine(app)
-
+        #app.bootstrap = Bootstrap(app)
         app.manager = Manager(app)
         app.manager.add_command(
             'runserver',
@@ -39,5 +40,16 @@ def main():  # pragma: no cover
     # Import your views!
     with app.app_context():
         import cnf.views
-
+    #app.run()
     app.manager.run()
+
+'''
+if __name__== "__main__":  # pragma: no cover
+    app = setup_app()
+
+    # Import your views!
+    with app.app_context():
+        import cnf.views
+    #app.run()
+    app.manager.run()
+'''
