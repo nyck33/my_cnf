@@ -4,7 +4,6 @@ from cnf.models import (
     CNFYieldAmount, CNFRefuseAmount
 )
 
-
 @app.route('/', methods=['GET'], endpoint='cnf.index')
 def index():
     q = request.args.get('q')
@@ -20,7 +19,11 @@ def show(food_id):
     yields = CNFYieldAmount.objects.filter(food=food)
     refuses = CNFRefuseAmount.objects.filter(food=food)
     return render_template(
+<<<<<<< HEAD
         'show2.html',
+=======
+        'layout.html',
+>>>>>>> edd871ec905f2483e8cf4a63ad773fe1efd1881d
         food=food,
         conversions=conversions,
         nutrients=nutrients,

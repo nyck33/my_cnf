@@ -9,7 +9,6 @@ class CNFDocument(db.Document):
         'abstract': True,
     }
 
-
 class CNFFoodName(CNFDocument):
     meta = {
         'collection': 'cnf_food_name'
