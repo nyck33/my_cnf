@@ -1,4 +1,4 @@
-{% extends "bootstrap/base.html" %}
+
 <!DOCTYPE html>
 <html>
 
@@ -9,63 +9,74 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+      <link rel="stylesheet" href="{{  url_for('static', filename='css/carousel.css') }}">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
   </head>
 
-  <body class="{{ request.url_rule.endpoint }}" style="font-family: Muli">
+  <body class="{{ request.url_rule.endpoint }} parallax" style="font-family: Muli">
 
-  <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Eco-Warriors</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarCollapse" aria-controls="navbarCollapse"
-        aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Home <span
-                    class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="food.html">Food</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="mental.html">Mind</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="physicalHealth.html">Body</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="spiritual.html">Soul</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="biosphere.html">Planet</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="famousVegans.html">People</a>
-                </li>
-            </ul>
-            <!--https://markjs.io/-->
-            <script src="js/mark.min.js" async></script>
-            <form class="form-inline mt-2 mt-md-0">
-            <script src="js/main.js" async></script>
-            <input class="form-control mr-sm-2" type="text" placeholder="Search"
-            >
+ <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <a class="navbar-brand" href="https://nyck33.github.io/ecoWarriors/" target="_blank">Eco-Warriors</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarCollapse" aria-controls="navbarCollapse"
+          aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span
+                  class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="food.html">Food</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="mental.html">Mind</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="physicalHealth.html">Body</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="spiritual.html">Soul</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="biosphere.html">Planet</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="famousVegans.html">People</a>
+              </li>
+              </ul>
+              <!--<form class="form-inline mt-2 mt-md-0">
 
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
-            onclick="searchSite()" value="run external js">Search</button>
-            </form>
+              <input class="form-control mr-sm-2" type="text" placeholder="Search"
+              aria-label="Search">-->
+              <input type="text" name="keyword" class="form-control input-sm searchbar" placeholder="search">
 
-        </div>
+          </div>
     </nav>
   </header>
-
+    <!--for mark.js-->
+    <div class="panel panel-default">
+    <div class="panel-body context">
     {% block content %} {% endblock %}
+    </div>
+    </div>
 
+
+    <!--javascript and jQuery-->
+    {% block javascript %}
+        <script src="{{ url_for('static', filename='js/mark.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/navbarSearch.js')}}"></script>
+    {% endblock %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script>
 
     <script src="https://use.fontawesome.com/63a7e983e5.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>

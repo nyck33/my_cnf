@@ -15,13 +15,15 @@ warnings.filterwarnings("ignore", category=DeprecationWarning, module='mongoengi
 def setup_app():
     app = Flask(
         __name__,
+        static_url_path='',
+        static_folder='static',
         template_folder=cnf.settings.TEMPLATE_FOLDER,
     )
     app.config.from_object(cnf.settings)
     with app.app_context():
         app.db = MongoEngine(app)
 
-        #app.bootstrap = Bootstrap(app)
+        app.bootstrap = Bootstrap(app)
         app.manager = Manager(app)
         app.manager.add_command(
             'runserver',
@@ -46,7 +48,7 @@ def main():  # pragma: no cover
 
 
 '''
-if __name__== "__main__":  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     app = setup_app()
 
     # Import your views!
@@ -55,9 +57,8 @@ if __name__== "__main__":  # pragma: no cover
     #app.run()
     app.manager.run()
 
-
-
-python cnf/main.py runserver
-
-
 '''
+
+#python cnf/main.py runserver
+
+

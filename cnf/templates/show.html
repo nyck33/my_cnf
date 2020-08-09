@@ -1,12 +1,17 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="container pt-4">
+<div class="top-title container pt-5 px">
+<div class="row mb-3">
+<div class="col-xl themed-grid-col top-title border-0">
   <h1 class="mb-0">{{ food.description }}</h1>
   <p class="mb-4"><a href="{{ url_for('cnf.index') }}">&laquo; back</a></p>
-
+</div>
+</div>
+<div class="row mb-3">
+<div class="col-xl-12">
   <table class="table table-sm table-striped table-bordered table-hover">
     <tr>
-      <th>Group Nobu</th>
+      <th>Group</th>
       <td>{{ food.food_group.name }}</td>
     </tr>
     <tr>
@@ -68,5 +73,6 @@
     </tr>
     {% endfor %}
   </table>
+</div>
 </div>
 {% endblock %}

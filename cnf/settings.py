@@ -13,6 +13,7 @@ FLASK_PORT = int(os.getenv('CNF_PORT', 8888))
 ROOT_URL = 'http://' + FLASK_BIND + ':' + str(FLASK_PORT) + '/'
 
 TEMPLATE_FOLDER = os.path.join(ROOT_PATH, 'cnf', 'templates')
+#STATIC_FOLDER = os.path.join(ROOT_PATH, 'cnf', 'static')
 
 MONGODB_HOST = os.getenv('CNF_MONGO_HOST', 'localhost')
 MONGODB_PORT = int(os.getenv('CNF_MONGO_PORT', 27017))
