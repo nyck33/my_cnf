@@ -102,3 +102,9 @@ ENV/
 .mypy_cache/
 
 .vscode/
+
+#images and zip
+*.jpg
+*.jpeg
+*.png
+*.zip
