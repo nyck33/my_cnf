@@ -1,7 +1,7 @@
 from flask import current_app as app
-# Just a shorthand
-db = app.db
 
+# Just a shorthand
+db = app.db  # MongoEngine(app) in main.py
 
 class CNFDocument(db.Document):
     meta = {

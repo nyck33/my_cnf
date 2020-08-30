@@ -204,7 +204,7 @@ html {
 
 .parallax {
   /* The image used */
-  background-image: url("/cnf/static/imgs/bgd/icebergs.jpg");
+  background-image: url("../imgs/bgd/icebergs.jpg");
 
   /* Full height */
   height: 100%; 

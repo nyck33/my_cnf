@@ -3,8 +3,12 @@
 <div class="container pt-4 parallax">
   <div class="row py-5">
     <div class="col text-center">
-      <h1>Canadian Nutrient File<br>Food Search</h1>
+        <h1>Canadian Nutrient File<br>Food Search</h1>
     </div>
+      <div style="'float:right">
+          <a href={{ url_for('user.logout') }}>Sign out</a>
+      </div>
+  </div>
   </div>
   <div class="row">
     <div class="col">
@@ -13,6 +17,7 @@
         </form>
 
     </div>
+
 
     {% if foods %}
     <div class="col">

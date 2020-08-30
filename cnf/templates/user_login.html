@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{%extends 'layout.html' %}
+
+<!--https://flask-user.readthedocs.io/en/latest/mongodb_app.html-->
+
+{% block content %}
+    <div class="container pt-4 parallax">
+        <div class="row py-5">
+            <div class="col">
+                <h2>Canadian Nutrient File Login</h2>
+                    <p><a href={{ url_for('user.register') }}> Register</a></p>
+                    <p><a href={{ url_for('user.login' )}}>Sign in</a></p>
+                    <p><a href={{ url_for('cnf.login' )}}>Home page</a> (accessible to anyone)</p>
+                    <p><a href={{ url_for('cnf.food_search') }}>Food Search</a> (login required)</p>
+                    <p><a href={{ url_for('user.logout') }}>Sign out</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
