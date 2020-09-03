@@ -18,6 +18,12 @@ import cnf.settings
 import cnf.scripts
 import cnf.login_form
 
+# for importing module from parent dir
+import os, sys, inspect
+current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir)
+
 # pymongo has issues...
 warnings.filterwarnings("ignore", category=DeprecationWarning, module='mongoengine')
 
@@ -80,7 +86,7 @@ def setup_app(extra_config_settings={}):
 
     return app
 
-
+'''
 def main(test=False):  # pragma: no cover
     app = setup_app()
 
@@ -100,6 +106,6 @@ if __name__ == "__main__":  # pragma: no cover
     #app.run()
     app.manager.run()
 
-'''
+
 
 #python cnf/main.py runserver
