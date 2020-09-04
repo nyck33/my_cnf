@@ -103,7 +103,7 @@ class FlaskClientTestCase(unittest.TestCase):
         # test that the food search page is now accessible
         #disable
         with self.app_context, self.app.test_request_context():
-            response = self.client.get(url_for('cnf.food_search'), content_type='html/text',
+            response = self.client.get(url_for('main.food_search'), content_type='html/text',
                                        follow_redirects=True,
                                        data=dict(username='example_user', password='Password1'))
             self.assertEqual(response.status_code, 200)

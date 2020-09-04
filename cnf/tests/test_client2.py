@@ -59,7 +59,7 @@ class FlaskClientTestCase(unittest.TestCase):
                     print('\nexample_user found\n')
                     assert user.password == 'Password1'
             # check that food_search can be reached
-            response = self.client.get(url_for('cnf.food_search'), content_type='html/text',
+            response = self.client.get(url_for('main.food_search'), content_type='html/text',
                                        follow_redirects=False)
             self.assertEqual(response.status_code, 302)
             self.assertTrue('Search' in response.get_data(as_text=True))

@@ -47,7 +47,7 @@ def setup_app(extra_config_settings={}):
 
     with app.app_context():
         app.db = MongoEngine(app)
-        mail.init(app)
+        #mail.init(app)
         csrf_protect.init_app(app)
         #register blueprints
         from cnf.views import register_blueprints
@@ -62,10 +62,10 @@ def setup_app(extra_config_settings={}):
 
         app.jinja_env.globals['bootstrap_is_hidden_field'] = is_hidden_field_filter
         #init_email_error_handler(app)
-        from cnf.models import User
-        from cnf.views.main_views import user_profile_page
 
-        #setup Flask-User to handle user account related issues
+        # setup Flask-User to handle user account related forms
+        from cnf.models.user_models import User
+        from cnf.views.main_views import user_profile_page
         user_manager = UserManager(app, app.db, User)
 
         @app.context_processor
@@ -86,7 +86,7 @@ def setup_app(extra_config_settings={}):
 
     return app
 
-'''
+
 def main(test=False):  # pragma: no cover
     app = setup_app()
 
@@ -109,3 +109,4 @@ if __name__ == "__main__":  # pragma: no cover
 
 
 #python cnf/main.py runserver
+'''
