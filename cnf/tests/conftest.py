@@ -2,42 +2,50 @@
 conftest.py pytest_fixtures can be accessed by multiple test files
 test function has fixture func name as param, then fixture func called and result
 passed to test func
+
+added localhost.localdomain to /etc/hosts
 """
 import pytest
 from cnf.main import setup_app
 import pymongo
 
-app = setup_app(dict(
+the_app = setup_app(dict(
     TESTING=True,
     LOGIN_DISABLED=False,
     MAIL_SUPPRESS_SEND=True,
-    SERVER_NAME='localhost',
+    SERVER_NAME='localhost.localdomain',
     WTF_CSRF_ENABLED=False,
 ))
 
-app.app_context().push()
+# the_app = setup_app()
+
+the_app.app_context().push()
 
 
 @pytest.fixture(scope='session')
 def app():
     """Makes app parameter available to test funcs"""
-    return app
+    return the_app
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='session', autouse=True)
 def db():
-    return app.db
+    """Create a test copy of cnf for session"""
+    client = pymongo.MongoClient("localhost", 27017)
+    if not client['cnf_test']:
+        client.admin.command('copydb', fromdb='cnf',
+                             todb='cnf_test')
+    db = client['cnf_test']
+    return db
 
 
 @pytest.fixture(scope='function')
-def session(request):
-    """Make a new connection"""
-    # Connect to cnf
-    client = pymongo.MongoClient("localhost", 27017)
-    assert client
-    testDB = client['testDB']
-    assert client['testDB']
+def data():
+    pass
+
 
 @pytest.fixture(scope='session')
 def client(app):
     return app.test_client()
+
+

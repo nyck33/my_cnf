@@ -16,7 +16,7 @@ main_blueprint = Blueprint('main', __name__, template_folder='templates')
 @main_blueprint.route('/')
 def home_page():
     # default
-    return render_template('home.html')
+    return render_template('main/home.html')
 
 #@app.route('/user/<int:user_id>', methods=['GET'], endpoint='cnf.users')
 @main_blueprint.route('/member')
@@ -26,7 +26,7 @@ def member_page():
     Display user account info
     :return:
     """
-    return render_template('member_page.html')
+    return render_template('main/member_page.html')
 
 @main_blueprint.route('/profile', methods=['GET', 'POST'])
 @login_required
@@ -43,23 +43,20 @@ def user_profile_page():
         return redirect(url_for('main.home_page'))
 
     # Process GET or invalid POST
-    return render_template('user_profile_page.html', form=form)
+    return render_template('main/user_profile_page.html', form=form)
 
 
 #@app.route('/food_search', methods=['GET'], endpoint='cnf.food_search')
-@main_blueprint.route('/food_search', methods=['GET'])
+@main_blueprint.route('/food_search', methods=['GET', 'POST'])
 @login_required  # User must be authenticated
 def food_search():
     q = request.args.get('q')
     foods = CNFFoodName.objects.filter(description__icontains=q) if q else []
-    #if session.get('logged_in'):
-    return render_template('food_search.html', foods=foods, q=q)
-    #else:
-     #   return redirect(url_for('cnf.login'))
+
+    return render_template('main/food_search.html', foods=foods, q=q)
+
+
 # app.add_url_rule('/', 'index', index)
-
-
-#@app.route('/<int:food_id>', methods=['GET'], endpoint='cnf.show')
 @main_blueprint.route('/<int:food_id>', methods=['GET'])
 @login_required  # User must be authenticated
 def show(food_id):
@@ -69,7 +66,7 @@ def show(food_id):
     yields = CNFYieldAmount.objects.filter(food=food)
     refuses = CNFRefuseAmount.objects.filter(food=food)
     return render_template(
-        'show.html',
+        'main/show.html',
         food=food,
         conversions=conversions,
         nutrients=nutrients,

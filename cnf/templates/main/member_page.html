@@ -1,4 +1,4 @@
-{%extends 'layout.html' %}
+{%extends "layout.html" %}
 
 <!--https://flask-user.readthedocs.io/en/latest/mongodb_app.html-->
 
@@ -6,11 +6,12 @@
     <div class="container pt-4 parallax">
         <div class="row py-5">
             <div class="col">
-                <h2>Canadian Nutrient File Home Page</h2>
+                <h2>Canadian Nutrient File Member Page</h2>
                     <p><a href={{ url_for('user.register') }}> Register</a></p>
                     <p><a href={{ url_for('user.login' )}}>Sign in</a></p>
                     <p><a href={{ url_for('main.home_page')}}>Home page</a> (accessible to anyone)</p>
                     <p><a href={{ url_for('main.member_page') }}>Member Page</a>(login_required: member@example.com / Password1)</p>
+                    <p><a href={{ url_for('main.food_search') }}>Food Search</a>(login required)</p>
                     <p><a href={{ url_for('user.logout') }}>Sign out</a></p>
             </div>
         </div>

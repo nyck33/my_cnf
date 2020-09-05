@@ -4,7 +4,6 @@ from .user_models import User, UserProfileForm
 # Just a shorthand
 db = app.db  # MongoEngine(app) in main.py
 
-
 class CNFDocument(db.Document):
     meta = {
         'allow_inheritance': True,

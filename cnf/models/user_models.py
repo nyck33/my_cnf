@@ -4,8 +4,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, validators
 from flask import current_app as app
 
-with app.app_context():
-    db = app.db
+#with app.app_context():
+db = app.db
 
 # Define User document
 # NB: Make sure to add flask_user UserMixin
@@ -17,10 +17,10 @@ class User(db.Document, UserMixin):
     last_name = db.StringField(default='')
     email = db.StringField(default='')
     # User authentication info
-    username = app.db.StringField(default='')
-    password = app.db.StringField(default='')
+    username = db.StringField(default='')
+    password = db.StringField(default='')
     # Relationships
-    roles = app.db.ListField(app.db.StringField(), default=[])
+    roles = db.ListField(app.db.StringField(), default=[])
 
 
 #Roles and UsersRoles add later

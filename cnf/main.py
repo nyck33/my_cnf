@@ -9,7 +9,8 @@ from flask_mongoengine import MongoEngine
 from flask_script import Server, Manager
 from flask_bootstrap import Bootstrap
 from flask_user import login_required, UserManager, UserMixin
-from flask_mail import Mail
+from flask.ext.mail import Mail
+#from flask_mail import Mail
 from flask_wtf.csrf import CSRFProtect
 
 from datetime import datetime
@@ -44,9 +45,14 @@ def setup_app(extra_config_settings={}):
     app.config.from_object(cnf.settings)
     # load extra settings from extra config settings param
     app.config.update(extra_config_settings)
-
+    # testing needs test_cnf db
+    test = extra_config_settings['TESTING']
     with app.app_context():
-        app.db = MongoEngine(app)
+        if test:
+
+        else: #production?
+            app.db = MongoEngine(app)
+
         #mail.init(app)
         csrf_protect.init_app(app)
         #register blueprints
