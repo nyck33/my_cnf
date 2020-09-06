@@ -9,13 +9,14 @@ import pytest
 from cnf.main import setup_app
 import pymongo
 
-the_app = setup_app(dict(
-    TESTING=True,
-    LOGIN_DISABLED=False,
-    MAIL_SUPPRESS_SEND=True,
-    SERVER_NAME='localhost.localdomain',
-    WTF_CSRF_ENABLED=False,
-))
+config_name = 'testing'
+the_app = setup_app(config_name, dict(
+                    TESTING=True,
+                    LOGIN_DISABLED=False,
+                    MAIL_SUPPRESS_SEND=True,
+                    SERVER_NAME='localhost.localdomain',
+                    WTF_CSRF_ENABLED=False,
+                ))
 
 # the_app = setup_app()
 
@@ -36,6 +37,10 @@ def db():
         client.admin.command('copydb', fromdb='cnf',
                              todb='cnf_test')
     db = client['cnf_test']
+    #delete example_user from user collection
+    user_coll = db.users
+    myquery = {"username": "example_user"}
+    user_coll.delete_one(myquery)
     return db
 
 

@@ -9,16 +9,13 @@ from flask_mongoengine import MongoEngine
 from flask_script import Server, Manager
 from flask_bootstrap import Bootstrap
 from flask_user import login_required, UserManager, UserMixin
-from flask.ext.mail import Mail
-#from flask_mail import Mail
+from flask_mail import Mail
 from flask_wtf.csrf import CSRFProtect
 
 from datetime import datetime
 
 import cnf.settings
 import cnf.scripts
-import cnf.login_form
-
 # for importing module from parent dir
 import os, sys, inspect
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -29,32 +26,30 @@ sys.path.insert(0, parent_dir)
 warnings.filterwarnings("ignore", category=DeprecationWarning, module='mongoengine')
 
 #instantiate Flask extensions
-csrf_protect = CSRFProtect()
-mail = Mail()
+#csrf_protect = CSRFProtect()
+#mail = Mail()
+
+config = cnf.settings.config
 
 
-def setup_app(extra_config_settings={}):
+def setup_app(config_name, extra_config_settings={} ):
     app = Flask(
         __name__, # special variable that gets string val of __main__ when executing script
         #static_url_path='',
         #static_folder='static',
-        static_folder=cnf.settings.STATIC_FOLDER,
-        template_folder=cnf.settings.TEMPLATE_FOLDER,
+        static_folder=cnf.settings.Config.STATIC_FOLDER,
+        template_folder=cnf.settings.Config.TEMPLATE_FOLDER,
     )
 
-    app.config.from_object(cnf.settings)
+    app.config.from_object(config[config_name])
     # load extra settings from extra config settings param
     app.config.update(extra_config_settings)
-    # testing needs test_cnf db
-    test = extra_config_settings['TESTING']
+
     with app.app_context():
-        if test:
+        app.db = MongoEngine(app)
 
-        else: #production?
-            app.db = MongoEngine(app)
-
-        #mail.init(app)
-        csrf_protect.init_app(app)
+        #csrf_protect.init_app(app)
+        app.CSRFProtect = CSRFProtect(app)
         #register blueprints
         from cnf.views import register_blueprints
         register_blueprints(app)
@@ -67,6 +62,7 @@ def setup_app(extra_config_settings={}):
             return isinstance(field, HiddenField)
 
         app.jinja_env.globals['bootstrap_is_hidden_field'] = is_hidden_field_filter
+        app.mail = Mail(app)
         #init_email_error_handler(app)
 
         # setup Flask-User to handle user account related forms
@@ -93,8 +89,8 @@ def setup_app(extra_config_settings={}):
     return app
 
 
-def main(test=False):  # pragma: no cover
-    app = setup_app()
+def main():  # pragma: no cover
+    app = setup_app('default')
 
     # Import your views!
     with app.app_context():

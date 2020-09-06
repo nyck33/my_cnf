@@ -7,6 +7,7 @@ from flask import current_app as app
 #with app.app_context():
 db = app.db
 
+
 # Define User document
 # NB: Make sure to add flask_user UserMixin
 class User(db.Document, UserMixin):
