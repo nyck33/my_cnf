@@ -9,7 +9,7 @@
 <form action="" method="POST" class="form" role="form">
   <div class="row">
     <div class="col-sm-6 col-md-5 col-lg-4">
-    {{ form.hidden_tag() }}
+    {{ form.hidden_tag() }} nd<!--CSRF protection-->
 
     {{ render_field(form.first_name, tabindex=240) }}
 

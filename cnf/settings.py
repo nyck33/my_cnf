@@ -27,7 +27,7 @@ class Config:
     #encryption, cryptographically signs client-side cookies so they cannot be tampered with
     #if tampered, session becomes invalid, insecure not to be used production
     SECRET_KEY = 'this key is not secure so be careful until it is'
-
+    WTF_CSRF_SECRET_KEY = 'this key may or may not be secure so change it'
     # Flask-User Settings
     # from https://flask-user.readthedocs.io/en/latest/configuring_settings.html
     USER_APP_NAME = "cnf"
