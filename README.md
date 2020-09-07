@@ -1,5 +1,7 @@
 # Canadian Nutrient File Nobu's Version
 
+![cnf_workflow](https://github.com/nyck33/canadian-nutrient-file/workflows/cnf_workflow/badge.svg)
+
 ## What?
 
 This project allows you to import the [Canadian Nutrient File](https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/nutrient-data/canadian-nutrient-file-2015-download-files.html) into a Mongo database with very little effort. The models I built are pretty basic, they follow their data structure, with the hope that future releases will be as easy to import.
